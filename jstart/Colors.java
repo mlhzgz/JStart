@@ -1,7 +1,7 @@
 package jstart;
 
 /**
- * Colors ANSI definitions for Unix-type console
+ * ANSI Colors definitions for Unix-type console
  */
 public final class Colors {
 
@@ -20,7 +20,7 @@ public final class Colors {
     public static final String CYAN = "\033[0;36m"; // CYAN
     public static final String WHITE = "\033[0;37m"; // WHITE
 
-    public class Bold {
+    public static class Bold {
         public static final String BLACK = "\033[1;30m"; // BLACK
         public static final String RED = "\033[1;31m"; // RED
         public static final String GREEN = "\033[1;32m"; // GREEN
@@ -30,7 +30,7 @@ public final class Colors {
         public static final String CYAN = "\033[1;36m"; // CYAN
         public static final String WHITE = "\033[1;37m"; // WHITE
 
-        public class High {
+        public static class High {
             public static final String BLACK = "\033[1;90m"; // BLACK
             public static final String RED = "\033[1;91m"; // RED
             public static final String GREEN = "\033[1;92m"; // GREEN
@@ -43,7 +43,8 @@ public final class Colors {
         }
     }
 
-    public class Underline {
+    // Underline layout
+    public static class Underline {
         public static final String BLACK = "\033[4;30m"; // BLACK
         public static final String RED = "\033[4;31m"; // RED
         public static final String GREEN = "\033[4;32m"; // GREEN
@@ -55,7 +56,8 @@ public final class Colors {
 
     }
 
-    public class Background {
+    // Background layout
+    public static class Background {
         public static final String BLACK = "\033[40m"; // BLACK
         public static final String RED = "\033[41m"; // RED
         public static final String GREEN = "\033[42m"; // GREEN
@@ -65,7 +67,7 @@ public final class Colors {
         public static final String CYAN = "\033[46m"; // CYAN
         public static final String WHITE = "\033[47m"; // WHITE
 
-        public class High {
+        public static class High {
             public static final String BLACK = "\033[0;100m";// BLACK
             public static final String RED = "\033[0;101m";// RED
             public static final String GREEN = "\033[0;102m";// GREEN
@@ -78,7 +80,8 @@ public final class Colors {
         }
     }
 
-    public class High {
+    // High layout
+    public static class High {
         public static final String BLACK = "\033[0;90m"; // BLACK
         public static final String RED = "\033[0;91m"; // RED
         public static final String GREEN = "\033[0;92m"; // GREEN
