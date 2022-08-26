@@ -5,10 +5,9 @@ import java.io.InputStreamReader;
 
 /**
  * Utility class for Unix-type console
+ * This class can run as "static" class or like super class
  */
-public final class Console {
-
-    private Console(){}
+public abstract class Console {
 
     /**
      * Sets the foreground/background color for the terminal (using Colors class)
@@ -39,8 +38,8 @@ public final class Console {
     /**
      * Sets the text cursor in a position on terminal
      * 
-     * @param x Position X for cursor
-     * @param y Position Y for cursor
+     * @param x position X for cursor
+     * @param y position Y for cursor
      */
     public static void setCursor(int x, int y) {
         print(String.format("%c[%d;%df", 0x1B, x, y));
@@ -49,8 +48,8 @@ public final class Console {
     /**
      * Prints an error to screen using RED foreground color
      * 
-     * @param error Text to print
-     * @param high  Indicates the weight of the text
+     * @param error text to print
+     * @param high  indicates the weight of the text
      */
     public static void printError(String error, boolean high) {
         setColor(high ? Colors.Bold.RED : Colors.High.RED);
@@ -61,8 +60,8 @@ public final class Console {
     /**
      * Prints a warning to screen using YELLOW foreground color
      * 
-     * @param warning Text to print
-     * @param high    Indicates the weight of the text
+     * @param warning text to print
+     * @param high    indicates the weight of the text
      */
     public static void printWarning(String warning, boolean high) {
         setColor(high ? Colors.Bold.YELLOW : Colors.YELLOW);
@@ -73,8 +72,8 @@ public final class Console {
     /**
      * Prints a text info to screen using GREEN foreground color
      * 
-     * @param info Text to print
-     * @param high Indicates de weight of the text
+     * @param info text to print
+     * @param high indicates de weight of the text
      */
     public static void printInfo(String info, boolean high) {
         setColor(high ? Colors.Bold.GREEN : Colors.GREEN);
@@ -110,7 +109,7 @@ public final class Console {
     /**
      * Reads a string value from keyboard
      * 
-     * @return The text read from the keyboard
+     * @return the text read from the keyboard
      */
     public static String readString() {
         String string = null;
@@ -136,7 +135,7 @@ public final class Console {
      * Reads a string value from keyboard
      * 
      * @param defaultValue The value returned if the user does not type anything
-     * @return The text read from the keyboard or defaulValue
+     * @return the text read from the keyboard or defaulValue
      */
     public static String readString(String defaultValue) {
         String value = readString();
@@ -148,9 +147,9 @@ public final class Console {
     }
 
     /**
-     * Reads a Integer number from keyboard
+     * Reads an Integer number from keyboard
      * 
-     * @return A Integer number
+     * @return an Integer number
      */
     public static Integer readInt() {
         var value = readString();
@@ -161,6 +160,11 @@ public final class Console {
             return null;
     }
 
+    /**
+     * Reads an int number from keyboard with a default value 
+     * @param defaultValue value if the user doesn't enter a value
+     * @return an int number
+     */
     public static int readInt(int defaultValue) {
         var value = readInt();
 
@@ -170,10 +174,19 @@ public final class Console {
         return value;
     }
 
+    /**
+     * Reads a Float number from keyboard
+     * @return a Float number
+     */
     public static Float readFloat() {
         return Float.parseFloat(readString());
     }
 
+    /**
+     * Reads a float number from keyboard with a default value
+     * @param defaultValue value if the user doesn't enter a value
+     * @return a float number
+     */
     public static float readFloat(float defaultValue) {
         var value = readFloat();
 
@@ -183,10 +196,19 @@ public final class Console {
         return value;
     }
 
+    /**
+     * Reads a Double number from keyboard
+     * @return a Double number
+     */
     public static Double readDouble() {
         return Double.parseDouble(readString());
     }
 
+    /**
+     * Reads a double number with a default value
+     * @param defaultValue value if the user doesn't enter a value
+     * @return a double number
+     */
     public static double readDouble(double defaultValue) {
         var value = readDouble();
 
@@ -196,10 +218,19 @@ public final class Console {
         return value;
     }
 
+    /**
+     * Reads a Long number from keyboard
+     * @return a Long number
+     */
     public static Long readLong() {
         return Long.parseLong(readString());
     }
 
+    /**
+     * REads a long number with a default value
+     * @param defaultValue value if the user doesn't enter a value
+     * @return a long number
+     */
     public static long readLong(long defaultValue) {
         var value = readLong();
 
