@@ -5,6 +5,9 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Opens a CSV file for reading (usable with try-with-resources)
@@ -90,13 +93,33 @@ public class CsvFileReader implements Closeable {
         try {
             String line = br.readLine();
 
+            if (line == null)
+                return null;
+
             if (fields != null && fields.length > 0)
-                return new CsvObject(fields, line.split(separator, fields.length));
+                return new CsvObject(fields, line.split(separator, fields.length), separator);
             else
-                return new CsvObject(fields, line.split(separator));
+                return new CsvObject(fields, line.split(separator), separator);
         } catch (IOException e) {
             return null;
         }
+    }
+
+    public String[] getNextRecordAsArray() {
+        List<String> data = new ArrayList<>();
+
+        try {
+            String line = br.readLine();
+
+            if (fields != null && fields.length > 0)
+                data.addAll(Arrays.asList(line.split(separator, fields.length)));
+            else
+                data.addAll(Arrays.asList(line.split(separator)));
+        } catch (IOException e) {
+
+        }
+
+        return data.toArray(new String[data.size()]);
     }
 
     /**

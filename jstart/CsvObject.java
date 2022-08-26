@@ -1,12 +1,15 @@
 package jstart;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class CsvObject {
 
     private Map<String, String> data;
+    private String[] fields;
+    private String separator;
 
-    public CsvObject(String[] fields, String[] data) {
+    public CsvObject(String[] fields, String[] data, String separator) {
         if (fields == null) {
             fields = new String[data.length];
 
@@ -15,13 +18,12 @@ public class CsvObject {
             }
         }
         
+        this.fields = fields;
+        this.data = new HashMap<>();
+
         for (int x = 0; x < fields.length; x++) {
             this.data.put(fields[x], data[x]);
         }
-    }
-
-    public String getValue(String key) {
-        return data.containsKey(key) ? data.get(key).toString() : null;
     }
 
     public String[] getKeys() {
@@ -32,6 +34,10 @@ public class CsvObject {
     public Object[] getValues() {
         Object[] values = new Object[data.size()];
         return data.values().toArray(values);
+    }
+   
+    public String getString(String key) {
+        return data.containsKey(key) ? data.get(key).toString() : null;
     }
 
     public Integer getInteger(String key) {
@@ -60,5 +66,62 @@ public class CsvObject {
 
     public Byte getByte(String key) {
         return data.containsKey(key) ? Byte.parseByte(data.get(key).toString()) : null;
+    }
+
+    public void setString(String key, String value)
+    {
+        data.put(key, value);
+    }
+
+    public void setInteger(String key, Integer value)
+    {
+        data.put(key, String.valueOf(value));
+    }
+
+    public void setLong(String key, Long value)
+    {
+        data.put(key, String.valueOf(value));
+    }
+
+    public void setDouble(String key, Double value)
+    {
+        data.put(key, String.valueOf(value));
+    }
+
+    public void setFloat(String key, Float value)
+    {
+        data.put(key, String.valueOf(value));
+    }
+
+    public void setShort(String key, Short value)
+    {
+        data.put(key, String.valueOf(value));
+    }
+
+    public void setByte(String key, Byte value)
+    {
+        data.put(key, String.valueOf(value));
+    }
+
+    public void setBoolean(String key, Boolean value)
+    {
+        data.put(key, String.valueOf(value));
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (int x = 0; x < fields.length; x++)
+        {
+            sb.append(data.get(fields[x])).append(separator);
+        }
+
+        return sb.deleteCharAt(sb.length() - 1).toString();
+    }
+
+    public int size()
+    {
+        return data.size();
     }
 }
