@@ -105,6 +105,10 @@ public class CsvFileReader implements Closeable {
         }
     }
 
+    /**
+     * Reads a record in the CSV file as an array
+     * @return an string array with the record data
+     */
     public String[] getNextRecordAsArray() {
         List<String> data = new ArrayList<>();
 
