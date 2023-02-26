@@ -10,12 +10,22 @@ public final class OS {
 
     private OS(){}
 
+    /**
+     * Operating System Types Enumeration
+     */
     public enum Type {
         WINDOWS, UNIX, LINUX, MAC, AIX, SOLARIS, OTHER
     }
 
+    /**
+     * This variable saves in memory the last operating system
+     */
     private static Type osType = null;
 
+    /**
+     * Gets the operating system type from System.getProperty()
+     * @return a system type
+     */
     public static Type getOSType() {
         if (osType == null) {
             var type = System.getProperty("os.name").toLowerCase();
@@ -56,6 +66,11 @@ public final class OS {
         return System.getProperty("os.version");
     }
 
+    /**
+     * Executes a system command
+     * @param command order to execute in the operating system
+     * @return a String with the result of the command
+     */
     public static String exec(String... command) {
 
         var result = "";
