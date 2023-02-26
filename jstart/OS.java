@@ -3,6 +3,9 @@ package jstart;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/*
+ * Multi Operating System Support for JStart
+ */
 public final class OS {
 
     private OS(){}
