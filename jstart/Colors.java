@@ -7,10 +7,14 @@ public final class Colors {
 
     private Colors(){}
 
-    // Reset
+    /**
+     * Reset the colors (fore and back-ground)
+     */
     public static final String RESET = "\033[0m"; // Text Reset
 
-    // Regular Colors
+    /**
+     * Regular colors
+     */
     public static final String BLACK = "\033[0;30m"; // BLACK
     public static final String RED = "\033[0;31m"; // RED
     public static final String GREEN = "\033[0;32m"; // GREEN
@@ -20,6 +24,9 @@ public final class Colors {
     public static final String CYAN = "\033[0;36m"; // CYAN
     public static final String WHITE = "\033[0;37m"; // WHITE
 
+    /**
+     * Bold regular colors
+     */
     public static class Bold {
         public static final String BLACK = "\033[1;30m"; // BLACK
         public static final String RED = "\033[1;31m"; // RED
@@ -30,6 +37,9 @@ public final class Colors {
         public static final String CYAN = "\033[1;36m"; // CYAN
         public static final String WHITE = "\033[1;37m"; // WHITE
 
+        /**
+         * Bolder high colors
+         */
         public static class High {
             public static final String BLACK = "\033[1;90m"; // BLACK
             public static final String RED = "\033[1;91m"; // RED
@@ -43,7 +53,9 @@ public final class Colors {
         }
     }
 
-    // Underline layout
+    /**
+     * Underline layout
+     */
     public static class Underline {
         public static final String BLACK = "\033[4;30m"; // BLACK
         public static final String RED = "\033[4;31m"; // RED
@@ -56,7 +68,9 @@ public final class Colors {
 
     }
 
-    // Background layout
+    /**
+     * Background layout
+     */
     public static class Background {
         public static final String BLACK = "\033[40m"; // BLACK
         public static final String RED = "\033[41m"; // RED
@@ -67,6 +81,9 @@ public final class Colors {
         public static final String CYAN = "\033[46m"; // CYAN
         public static final String WHITE = "\033[47m"; // WHITE
 
+        /**
+         * Lighter background layout
+         */
         public static class High {
             public static final String BLACK = "\033[0;100m";// BLACK
             public static final String RED = "\033[0;101m";// RED
@@ -80,7 +97,9 @@ public final class Colors {
         }
     }
 
-    // High layout
+    /**
+     * Lighter layout
+     */
     public static class High {
         public static final String BLACK = "\033[0;90m"; // BLACK
         public static final String RED = "\033[0;91m"; // RED

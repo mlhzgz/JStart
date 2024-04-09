@@ -50,18 +50,34 @@ public final class OS {
         return osType;
     }
 
+    /**
+     * Indicates that the installed OS is Windows
+     * @return true if OS is Windows
+     */
     public static boolean isWindows() {
         return getOSType() == Type.WINDOWS;
     }
 
+    /**
+     * Indicates that the installed OS is Mac
+     * @return true if OS is Mac
+     */
     public static boolean isMac() {
         return getOSType() == Type.MAC;
     }
 
+    /**
+     * Indicates that the installed OS is Linux
+     * @return true if OS is Linux
+     */
     public static boolean isLinux() {
         return getOSType() == Type.LINUX;
     }
 
+    /**
+     * Gets the OS version string
+     * @return version string
+     */
     public static String getVersion() {
         return System.getProperty("os.version");
     }
@@ -96,6 +112,11 @@ public final class OS {
 
     }
 
+    /**
+     * Executes a system command in a console terminal
+     * @param commandorder to execute in the terminal
+     * @return a string with the result of the command
+     */
     public static String exec(String command) {
         if (isLinux() || isMac())
             return exec("/bin/sh", "-c", command);
@@ -105,4 +126,11 @@ public final class OS {
             return exec(new String[] { command });
     }
 
+    /**
+     * Gets the temp directory of system
+     * @return path to temporal directory
+     */
+    public static String getTempDirectory() {
+        return System.getProperty("java.io.tmpdir");
+    }
 }
