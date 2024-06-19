@@ -1,1 +1,7 @@
 **/.DS_Store
+
+# temporalmente los excluimos
+src/jstart/comp/**
+src/jstart/gui/**
+bin/**
+JStart.jar
