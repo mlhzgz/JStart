@@ -90,6 +90,7 @@ public final class DateTime {
 
     /**
      * Gets the local date and time into Datetime object
+     * 
      * @return LocalDateTime value
      */
     public LocalDateTime getLocalDateTime() {
@@ -98,6 +99,7 @@ public final class DateTime {
 
     /**
      * Gets the actual date as DateTime object
+     * 
      * @return DateTime the actual date
      */
     public DateTime getDate() {
@@ -107,6 +109,7 @@ public final class DateTime {
 
     /**
      * Gets the ordinal day of the month
+     * 
      * @return integer ordinal: 1-31
      */
     public int getDay() {
@@ -115,6 +118,7 @@ public final class DateTime {
 
     /**
      * Sets the ordinal day of the month
+     * 
      * @param day ordinal: 1-31
      */
     public void setDay(int day) {
@@ -123,6 +127,7 @@ public final class DateTime {
 
     /**
      * Gets the day of week
+     * 
      * @return 1 (monday) to 7 (sunday)
      */
     public int getDayOfWeek() {
@@ -131,6 +136,7 @@ public final class DateTime {
 
     /**
      * Gets the ordeinal day of year
+     * 
      * @return 1 to 365/6
      */
     public int getDayOfYear() {
@@ -139,6 +145,7 @@ public final class DateTime {
 
     /**
      * Gets the ordenal hour of day
+     * 
      * @return 0 to 23
      */
     public int getHour() {
@@ -147,6 +154,7 @@ public final class DateTime {
 
     /**
      * Sets the hour of day
+     * 
      * @param hour 0 to 23
      */
     public void setHour(int hour) {
@@ -163,6 +171,7 @@ public final class DateTime {
 
     /**
      * Gets the minute of the hour
+     * 
      * @return integer 0 to 59
      */
     public int getMinute() {
@@ -171,6 +180,7 @@ public final class DateTime {
 
     /**
      * Sets the minute of the hour
+     * 
      * @param minute integer 0 to 59
      */
     public void setMinute(int minute) {
@@ -179,6 +189,7 @@ public final class DateTime {
 
     /**
      * Gets month of year
+     * 
      * @return integer 1 to 12
      */
     public int getMonth() {
@@ -187,6 +198,7 @@ public final class DateTime {
 
     /**
      * Sets month of year
+     * 
      * @param month integer 1 to 12
      */
     public void setMonth(int month) {
@@ -195,6 +207,7 @@ public final class DateTime {
 
     /**
      * Gets second of hour
+     * 
      * @return integer 0 to 59
      */
     public int getSecond() {
@@ -203,6 +216,7 @@ public final class DateTime {
 
     /**
      * Set second of hour
+     * 
      * @param second integer 0 to 59
      */
     public void setSecond(int second) {
@@ -448,8 +462,7 @@ public final class DateTime {
      * 
      * @return
      */
-    public int weekOfYear()
-    {
+    public int weekOfYear() {
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         return dt.get(weekFields.weekOfYear());
     }
@@ -459,8 +472,7 @@ public final class DateTime {
      * 
      * @return
      */
-    public int weekOfMonth()
-    {
+    public int weekOfMonth() {
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         return dt.get(weekFields.weekOfMonth());
     }
@@ -469,7 +481,7 @@ public final class DateTime {
      * Parses a string date and time
      * 
      * @param datetime
-     * @return a new date and time
+     * @return a new date and time object
      */
     public static DateTime parse(String datetime) {
         return new DateTime(LocalDateTime.parse(datetime));
@@ -480,10 +492,31 @@ public final class DateTime {
      * 
      * @param datetime
      * @param formatter
-     * @return a new date and time
+     * @return a new date and time object
      */
     public static DateTime parse(String datetime, DateTimeFormatter formatter) {
         return new DateTime(LocalDateTime.parse(datetime, formatter));
+    }
+
+    /**
+     * Parses a string date
+     * 
+     * @param date
+     * @return a new date object
+     */
+    public static DateTime parseDate(String date) {
+        return new DateTime(LocalDate.parse(date));
+    }
+
+    /**
+     * Parses a string date wiath a formatter
+     * 
+     * @param date
+     * @param formatter
+     * @return a new date object
+     */
+    public static DateTime parseDate(String date, DateTimeFormatter formatter) {
+        return new DateTime(LocalDate.parse(date, formatter));
     }
 
     /**
