@@ -91,6 +91,16 @@ public abstract class Console {
     }
 
     /**
+     * Prints values using a format string
+     * 
+     * @param format string with a valid Java format
+     * @param data   values to print
+     */
+    public void print(String format, Object... data) {
+        System.out.printf(format, data);
+    }
+
+    /**
      * Prints something to screen with a new line
      * 
      * @param what something to print
@@ -114,8 +124,10 @@ public abstract class Console {
     public static String readString() {
         String string = null;
 
-        try (var isr = new InputStreamReader(System.in);
-                var br = new BufferedReader(isr)) {
+        try {
+            var isr = new InputStreamReader(System.in);
+            var br = new BufferedReader(isr);
+
             string = br.readLine();
         } catch (Exception e) {
             e.printStackTrace();
@@ -161,7 +173,8 @@ public abstract class Console {
     }
 
     /**
-     * Reads an int number from keyboard with a default value 
+     * Reads an int number from keyboard with a default value
+     * 
      * @param defaultValue value if the user doesn't enter a value
      * @return an int number
      */
@@ -176,6 +189,7 @@ public abstract class Console {
 
     /**
      * Reads a Float number from keyboard
+     * 
      * @return a Float number
      */
     public static Float readFloat() {
@@ -184,6 +198,7 @@ public abstract class Console {
 
     /**
      * Reads a float number from keyboard with a default value
+     * 
      * @param defaultValue value if the user doesn't enter a value
      * @return a float number
      */
@@ -198,6 +213,7 @@ public abstract class Console {
 
     /**
      * Reads a Double number from keyboard
+     * 
      * @return a Double number
      */
     public static Double readDouble() {
@@ -206,6 +222,7 @@ public abstract class Console {
 
     /**
      * Reads a double number with a default value
+     * 
      * @param defaultValue value if the user doesn't enter a value
      * @return a double number
      */
@@ -220,6 +237,7 @@ public abstract class Console {
 
     /**
      * Reads a Long number from keyboard
+     * 
      * @return a Long number
      */
     public static Long readLong() {
@@ -228,6 +246,7 @@ public abstract class Console {
 
     /**
      * REads a long number with a default value
+     * 
      * @param defaultValue value if the user doesn't enter a value
      * @return a long number
      */
