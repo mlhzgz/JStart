@@ -1,7 +1,7 @@
 **/.DS_Store
-
-# temporalmente los excluimos
-src/jstart/comp/**
-src/jstart/gui/**
 bin/**
 JStart.jar
+JStart - previo cambios en Query.run.jar
+
+# temporalmente los excluimos
+src/jstart/descartado/**
