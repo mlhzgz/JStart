@@ -96,7 +96,7 @@ public abstract class Console {
      * @param format string with a valid Java format
      * @param data   values to print
      */
-    public void print(String format, Object... data) {
+    public static void print(String format, Object... data) {
         System.out.printf(format, data);
     }
 
