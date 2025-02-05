@@ -32,6 +32,8 @@ public class Insert extends Command<Insert> {
                 values.values().stream().map(v -> {
                     if (v instanceof String && !v.equals("?")) // Si es texto pero no un parámetro
                         return "'%s'".formatted(v);
+                    else if (v == null)
+                        return "NULL";
                     else
                         return v.toString();
                 }).collect(Collectors.joining(",")));
