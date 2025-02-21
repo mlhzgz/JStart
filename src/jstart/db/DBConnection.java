@@ -24,12 +24,18 @@ public abstract class DBConnection {
      */
     private Supplier<Select> selectInstance;
 
+    /**
+     * Enclosing characters for tables, fields, etc.
+     */
+    private String[] enclosingCharacters;
+
     static {
         connections = new HashMap<>();
     }
 
     private DBConnection() {
         selectInstance = Select::new;
+        enclosingCharacters = new String[] { "", "" };
 
         Runtime.getRuntime().addShutdownHook(
                 new Thread(() -> {
@@ -39,8 +45,7 @@ public abstract class DBConnection {
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                })
-        );
+                }));
     }
 
     protected DBConnection(String urlConn) throws SQLException {
@@ -70,7 +75,8 @@ public abstract class DBConnection {
         if (connections.containsKey(name))
             return connections.get(name);
 
-        var conn = new DBConnection(urlConn) {};
+        var conn = new DBConnection(urlConn) {
+        };
 
         connections.put(name, conn);
 
@@ -81,25 +87,30 @@ public abstract class DBConnection {
         if (connections.containsKey(name))
             return connections.get(name);
 
-        var conn = new DBConnection(urlConn, props) {};
+        var conn = new DBConnection(urlConn, props) {
+        };
 
         connections.put(name, conn);
 
         return conn;
     }
 
-    public static DBConnection create(String name, String urlConn, String username, String password) throws SQLException {
+    public static DBConnection create(String name, String urlConn, String username, String password)
+            throws SQLException {
         if (connections.containsKey(name))
             return connections.get(name);
 
-        var conn = new DBConnection(urlConn, username, password) {};
+        var conn = new DBConnection(urlConn, username, password) {
+        };
 
         connections.put(name, conn);
 
         return conn;
     }
 
+    @SuppressWarnings("rawtypes")
     public Query query(Command command) {
+        command.setEnclosingChars(getBeginEnclosingChar(), getEndEnclosingChar());
         return Query.with(this, command);
     }
 
@@ -108,16 +119,22 @@ public abstract class DBConnection {
         return this;
     }
 
-    public Supplier<Select> getSelect(){
+    public DBConnection setEnclosingChars(String beginChar, String endChar) {
+        enclosingCharacters[0] = beginChar;
+        enclosingCharacters[1] = endChar;
+
+        return this;
+    }
+
+    public Supplier<Select> getSelect() {
         return selectInstance;
     }
 
-    // public <T extends Entity<T>> Repository<T> repository(Class<Repository<T>> tClass) {
-    //     var repo = Repository.get(tClass);
+    public String getBeginEnclosingChar() {
+        return enclosingCharacters[0];
+    }
 
-    //     if (repo == null)
-    //         repo = new Repository<>(this, tClass.);
-
-    //     return repo;
-    // }
+    public String getEndEnclosingChar() {
+        return enclosingCharacters[1];
+    }
 }

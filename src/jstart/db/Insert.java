@@ -27,8 +27,8 @@ public class Insert extends Command<Insert> {
 
         clear();
         append("INSERT INTO %s (%s) VALUES (%s)",
-                table(),
-                values.keySet().stream().map("`%s`"::formatted).collect(Collectors.joining(",")),
+                encloseString(table()),
+                values.keySet().stream().map(encloseString("%s")::formatted).collect(Collectors.joining(",")),
                 values.values().stream().map(v -> {
                     if (v instanceof String && !v.equals("?")) // Si es texto pero no un parámetro
                         return "'%s'".formatted(v);

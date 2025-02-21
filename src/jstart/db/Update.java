@@ -22,12 +22,12 @@ public class Update extends Command<Update> {
             if (value instanceof String && !value.equals("?"))
                 value = "'%s'".formatted(value);
 
-            vs.add("%s = %s".formatted(key, value));
+            vs.add("%s = %s".formatted(encloseString(key), value));
         }
 
         clear();
         append("UPDATE %s SET %s",
-                table(),
+                encloseString(table()),
                 String.join(",", vs));
 
         if (getFilter() != null) {
