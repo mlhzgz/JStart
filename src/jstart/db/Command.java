@@ -40,6 +40,7 @@ public abstract class Command<T> {
     private final StringBuilder sb;
     private Map<String, Object> values;
     private Filter filter;
+    private String[] enclosingCharacters;
 
     protected Command() {
         sb = new StringBuilder();
@@ -192,5 +193,23 @@ public abstract class Command<T> {
     @Override
     public String toString() {
         return sb.toString();
+    }
+
+    public void setEnclosingChars(String beginChar, String endChar) {
+        enclosingCharacters = new String[2];
+        enclosingCharacters[0] = beginChar;
+        enclosingCharacters[1] = endChar;
+    }
+
+    public String getBeginEnclosingChar() {
+        return enclosingCharacters[0];
+    }
+
+    public String getEndEnclosingChar() {
+        return enclosingCharacters[1];
+    }
+
+    public String encloseString(String str) {
+        return enclosingCharacters[0] + str + enclosingCharacters[1];
     }
 }
