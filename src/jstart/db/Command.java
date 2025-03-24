@@ -195,20 +195,37 @@ public abstract class Command<T> {
         return sb.toString();
     }
 
+    /**
+     * Specifies data engine-specific characters to enclose special expressions
+     * 
+     * @param beginChar
+     * @param endChar
+     */
     public void setEnclosingChars(String beginChar, String endChar) {
         enclosingCharacters = new String[2];
         enclosingCharacters[0] = beginChar;
         enclosingCharacters[1] = endChar;
     }
 
+    /**
+     * @return the begin enclosing char
+     */
     public String getBeginEnclosingChar() {
         return enclosingCharacters[0];
     }
 
+    /**
+     * @return the ending enclosing char
+     */
     public String getEndEnclosingChar() {
         return enclosingCharacters[1];
     }
 
+    /**
+     * Enclose a string between the defined enclosing characters
+     * 
+     * @param str to enclose
+     */
     public String encloseString(String str) {
         return enclosingCharacters[0] + str + enclosingCharacters[1];
     }

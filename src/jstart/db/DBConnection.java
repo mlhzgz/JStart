@@ -48,16 +48,37 @@ public abstract class DBConnection {
                 }));
     }
 
+    /**
+     * Specify a DB url connection string to drive manager
+     * 
+     * @param urlConn
+     * @throws SQLException
+     */
     protected DBConnection(String urlConn) throws SQLException {
         this();
         conn = DriverManager.getConnection(urlConn);
     }
 
+    /**
+     * Specify a DB url connection with properties to drive manager
+     * 
+     * @param urlConn
+     * @param props
+     * @throws SQLException
+     */
     protected DBConnection(String urlConn, Properties props) throws SQLException {
         this();
         conn = DriverManager.getConnection(urlConn, props);
     }
 
+    /**
+     * Specify a DB url connection with an username and password
+     * 
+     * @param urlConn
+     * @param username
+     * @param password
+     * @throws SQLException
+     */
     protected DBConnection(String urlConn, String username, String password) throws SQLException {
         this();
         conn = DriverManager.getConnection(urlConn, username, password);
@@ -67,10 +88,24 @@ public abstract class DBConnection {
         return conn;
     }
 
+    /**
+     * Returns a previously created connection
+     * 
+     * @param name of db connection
+     * @return a DBConnection object
+     */
     public static DBConnection get(String name) {
         return connections.getOrDefault(name, null);
     }
 
+    /**
+     * Creates a new connection with a name and a url connection string
+     * 
+     * @param name
+     * @param urlConn
+     * @return
+     * @throws SQLException
+     */
     public static DBConnection create(String name, String urlConn) throws SQLException {
         if (connections.containsKey(name))
             return connections.get(name);
@@ -83,6 +118,16 @@ public abstract class DBConnection {
         return conn;
     }
 
+    /**
+     * Creates a new connection with a name and a url connection string with a
+     * properties object
+     * 
+     * @param name
+     * @param urlConn
+     * @param props
+     * @return
+     * @throws SQLException
+     */
     public static DBConnection create(String name, String urlConn, Properties props) throws SQLException {
         if (connections.containsKey(name))
             return connections.get(name);
@@ -95,6 +140,17 @@ public abstract class DBConnection {
         return conn;
     }
 
+    /**
+     * Creates a new connection with a name and a url connection string and a
+     * username and password values
+     * 
+     * @param name
+     * @param urlConn
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException
+     */
     public static DBConnection create(String name, String urlConn, String username, String password)
             throws SQLException {
         if (connections.containsKey(name))
@@ -108,17 +164,37 @@ public abstract class DBConnection {
         return conn;
     }
 
+    /**
+     * Creates a new query object
+     * 
+     * @param command
+     * @return
+     */
     @SuppressWarnings("rawtypes")
     public Query query(Command command) {
         command.setEnclosingChars(getBeginEnclosingChar(), getEndEnclosingChar());
         return Query.with(this, command);
     }
 
+    /**
+     * Sets a new select query object type for the connection (like classes in
+     * custom package)
+     * 
+     * @param selectInstance
+     * @return
+     */
     public DBConnection setSelect(Supplier<Select> selectInstance) {
         this.selectInstance = selectInstance;
         return this;
     }
 
+    /**
+     * Specifies data engine-specific characters to enclose special expressions
+     * 
+     * @param beginChar
+     * @param endChar
+     * @return
+     */
     public DBConnection setEnclosingChars(String beginChar, String endChar) {
         enclosingCharacters[0] = beginChar;
         enclosingCharacters[1] = endChar;
@@ -126,14 +202,25 @@ public abstract class DBConnection {
         return this;
     }
 
+    /**
+     * Returns the current select query object of the connection
+     * 
+     * @return
+     */
     public Supplier<Select> getSelect() {
         return selectInstance;
     }
 
+    /**
+     * @return the begin enclosing char
+     */
     public String getBeginEnclosingChar() {
         return enclosingCharacters[0];
     }
 
+    /**
+     * @return the ending enclosing char
+     */
     public String getEndEnclosingChar() {
         return enclosingCharacters[1];
     }

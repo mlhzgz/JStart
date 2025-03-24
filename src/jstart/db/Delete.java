@@ -1,5 +1,8 @@
 package jstart.db;
 
+/**
+ * Creates a new delete query sentence
+ */
 public class Delete extends Command<Delete> {
     protected Delete() {
 
